@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Breh's Chat</title>
+    <style>
+        html,body { height:100%; margin:0; }
+        iframe { position:fixed; inset:0; width:100%; height:100%; border:0; }
+        /* fallback overlay shown if embedding is blocked */
+        #fallback {
+            display:none;
+            position:fixed;
+            inset:0;
+            background: #0b1220;
+            color: #fff;
+            align-items:center;
+            justify-content:center;
+            flex-direction:column;
+            gap:1rem;
+            font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+            padding:2rem;
+            text-align:center;
+        }
+        .btn {
+            background:#0ea5a4;
+            color:#042027;
+            padding:0.6rem 1rem;
+            border-radius:6px;
+            text-decoration:none;
+            font-weight:600;
+        }
+        .hint { opacity:0.85; font-size:0.95rem; max-width:40rem; }
+    </style>
+</head>
+<body>
+    <iframe id="embed"
+                    src="https://t2bufo1rlyht.share.zrok.io"
+                    title="official chat"
+                    allowfullscreen
+                    sandbox="allow-forms allow-scripts allow-same-origin allow-popups">
+    </iframe>
+
+    <div id="fallback">
+        <div class="hint">
+            This content could not be embedded (the site may disallow framing).
+        </div>
+        <a class="btn" href="https://t2bufo1rlyht.share.zrok.io" target="_blank" rel="noopener noreferrer">Open in new tab</a>
+    </div>
+
+    <script>
+        const iframe = document.getElementById('embed');
+        const fb = document.getElementById('fallback');
+        let loaded = false;
+        iframe.addEventListener('load', () => { loaded = true; fb.style.display = 'none'; });
+        // If iframe doesn't load (X-Frame-Options/CSP), show fallback after short delay
+        setTimeout(() => { if (!loaded) fb.style.display = 'flex'; }, 1200);
+    </script>
+</body>
+</html>
